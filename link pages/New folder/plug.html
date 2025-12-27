@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Many happy returns! 🎉</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Pacifico&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="plug.css">
+</head>
+
+<body class="bg-animate flex flex-col items-center relative overflow-x-hidden min-h-screen">
+
+    <!-- FULL SCREEN BACKGROUND ANIMATIONS -->
+    <div id="decorations"></div>
+
+    <!-- Main Card -->
+    <main class="glass-card relative z-10 mt-10">
+        
+          <div class="video-container">
+    <video 
+    controls 
+    poster="cover.webp" 
+    preload="metadata" 
+    loading="lazy"
+    playsinline>
+        <source src="video.mp4" type="video/mp4">
+        
+    </video>
+    
+    <div class="video-info">
+        <h3>Song for you.</h3>
+        </div>
+       
+    </div>
+</div> 
+    </main>
+
+    <!-- Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <!-- JS -->
+    <script src="plug.js"></script>
+</body>
+</html>

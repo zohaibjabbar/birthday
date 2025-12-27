@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday My Queen!</title>
+
+  <style>
+    :root { 
+      --accent: #ff1493;
+      --gold: #ffd700;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #feada6 100%);
+      background-size: 400% 400%;
+      animation: bgFlow 10s ease infinite;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @keyframes bgFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      width: 90%;
+      max-width: 70%;
+      padding: 30px;
+      border-radius: 25px;
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      background: rgba(255, 255, 255, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+      z-index: 100; /* Keeps the card above decorations if you prefer, or set lower to let items float over */
+      position: relative;
+      max-height: 80vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1 {
+      color: var(--accent);
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-align: center;
+      text-shadow: 2px 2px 4px rgba(255,255,255,0.5);
+    }
+
+    #list-container {
+      overflow-y: auto;
+      padding-right: 10px;
+      
+    }
+
+    #list-container::-webkit-scrollbar {
+  display: none;
+}
+
+
+    .list-item {
+      background: rgba(255, 255, 255, 0.7);
+      margin: 10px 0;
+      padding: 15px;
+      border-radius: 15px;
+      border-left: 5px solid var(--accent);
+      animation: popIn .6s ease forwards;
+      opacity: 0;
+    }
+
+    @keyframes popIn {
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* DECORATION STYLE - FIXED TO VIEWPORT */
+    .decoration {
+      position: fixed;
+      pointer-events: none; /* Allows clicking through them */
+      z-index: 9999; /* Forces them to the very front */
+      user-select: none;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(110vh) translateX(0); opacity: 1; }
+      50% { transform: translateY(50vh) translateX(20px); }
+      100% { transform: translateY(-20vh) translateX(-20px); opacity: 0; }
+    }
+
+    .balloon {
+      width: 40px;
+      height: 50px;
+      border-radius: 50%;
+      animation: floatUp 8s linear forwards;
+    }
+
+    .balloon::before {
+      content: "▲";
+      position: absolute;
+      bottom: -8px;
+      left: 13px;
+      font-size: 10px;
+      color: inherit;
+    }
+
+    .emoji-float {
+      font-size: 30px;
+      animation: floatUp 7s linear forwards;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>'Til when?</h1>
+    <div id="list-container"></div>
+  </div>
+
+  <script>
+    const container = document.getElementById("list-container");
+    const wishes = [
+      "Well, I said that I would keep proving myself, and when you asked '’til when,' I didn’t answer that question that time. The answer is",
+      "I don’t know what the future will bring, and I don’t know what will occur tomorrow, next week, or in the years to come. This I do know: I want to be present, authentic, and steady in every opportunity I get. I want to be someone who cares, not only when everything is going well and it doesn’t cost me much, but when everything isn’t going well, when the world feels heavy, and when someone feels like they’re all alone.",
+      "Trust is not easy to offer, and in many ways, it is even more difficult to earn. I realize that. However, I do believe in proving myself not by words, but by actions actions that express care, respect, and integrity. I may not be flawless, and I might make some mistakes along the way, but I would like to be genuine, authentic, and down-to-earth in my dealings with people. I would like to be the one who will listen, support, and stand by people in both their triumphant and tough experiences in life.",
+      "Distance, situations, and miscommunications can surely come between us, but I believe in being there in presence as well as in effort. I try to demonstrate that although life may be complicated and the world may make trusting a challenge, it is still possible to be authentic, to display concern, and to establish a connection. I try to be a reminder that a person can be there in the good times as well as in the tough times. No person has to go through all of it alone.",
+      "I know that I am not flawless. I know that I have limitations and that I fail, but I always set out to be genuine, down-to-earth, and here. For me, life is not about huge promises or lots of words. It is about actions that show respect, care, and thinking. I would like to continue to prove myself not to please others but to be someone dependable, someone to listen to, someone to appreciate moments with, someone to count in.",
+     
+    ];
+
+    wishes.forEach((text, i) => {
+      let item = document.createElement("div");
+      item.className = "list-item";
+      item.innerHTML = `<strong>${i+1}.</strong> ${text}`;
+      item.style.animationDelay = (i * 0.2) + "s";
+      container.appendChild(item);
+    });
+
+    function spawnDecoration() {
+      const elements = ["🎈", "🎂", "🎉", "💖", "✨"];
+      const type = elements[Math.floor(Math.random() * elements.length)];
+      
+      const el = document.createElement("div");
+      el.className = "decoration emoji-float";
+      el.innerText = type;
+      
+      // Random horizontal position across the full width
+      el.style.left = Math.random() * 95 + "vw"; 
+      el.style.bottom = "-10vh";
+      
+      // Random speed and size
+      const duration = 5 + Math.random() * 5;
+      el.style.animationDuration = duration + "s";
+      el.style.fontSize = (20 + Math.random() * 30) + "px";
+      
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), duration * 1000);
+    }
+
+    function spawnBalloon() {
+      const b = document.createElement("div");
+      const colors = ['#ff6347', '#ffd700', '#ff1493', '#00ced1', '#9370db'];
+      b.className = "decoration balloon";
+      b.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      b.style.color = b.style.backgroundColor;
+      b.style.left = Math.random() * 95 + "vw";
+      b.style.bottom = "-10vh";
+      
+      const duration = 7 + Math.random() * 5;
+      b.style.animationDuration = duration + "s";
+      
+      document.body.appendChild(b);
+      setTimeout(() => b.remove(), duration * 1000);
+    }
+
+    // High frequency spawning for a "Full Screen" party effect
+    setInterval(spawnDecoration, 400); 
+    setInterval(spawnBalloon, 700);
+  </script>
+</body>
+</html>

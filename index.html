@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Countdown 🎉</title>
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background: radial-gradient(circle at top, #ff9a9e, #fad0c4);
+    color: white;
+    overflow: hidden;
+}
+
+/* Glass cards */
+.glass {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(14px);
+    border-radius: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.4);
+}
+
+.countdown-item {
+    min-width: 90px;
+}
+
+/* Fade animation */
+.fade-out {
+    animation: fadeOut 2s ease forwards;
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0; transform: scale(0.95); }
+}
+
+/* Confetti */
+.confetti {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        radial-gradient(circle, #fff 2px, transparent 2px),
+        radial-gradient(circle, #ff6f91 2px, transparent 2px),
+        radial-gradient(circle, #ffc75f 2px, transparent 2px);
+    background-size: 60px 60px;
+    animation: confettiMove 18s linear infinite;
+    opacity: 0.35;
+}
+
+@keyframes confettiMove {
+    from { background-position: 0 0; }
+    to { background-position: 0 1200px; }
+}
+
+/* Balloons */
+.balloon {
+    position: fixed;
+    bottom: -150px;
+    width: 60px;
+    height: 80px;
+    border-radius: 50%;
+    animation: floatUp 12s linear infinite;
+    opacity: 0.9;
+}
+
+.balloon::after {
+    content: "";
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    width: 2px;
+    height: 40px;
+    background: rgba(255,255,255,0.7);
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(0) translateX(0);
+    }
+    to {
+        transform: translateY(-120vh) translateX(30px);
+    }
+}
+
+/* Birthday screen */
+#birthday-screen {
+    display: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="confetti"></div>
+
+<div class="balloon bg-pink-400" style="left:10%; animation-delay:0s;"></div>
+<div class="balloon bg-yellow-300" style="left:25%; animation-delay:3s;"></div>
+<div class="balloon bg-purple-400" style="left:45%; animation-delay:6s;"></div>
+<div class="balloon bg-blue-400" style="left:65%; animation-delay:2s;"></div>
+<div class="balloon bg-red-400" style="left:85%; animation-delay:5s;"></div>
+
+<div id="countdown-screen" class="min-h-screen flex items-center justify-center p-6 text-center">
+    <div class="max-w-2xl w-full">
+        <h2 class="uppercase tracking-widest mb-4 font-semibold">
+            🎉 Birthday Countdown 🎉
+        </h2>
+
+        <h1 class="text-5xl md:text-7xl font-extrabold mb-6">
+            A Special Day Is Coming
+        </h1>
+
+        <p class="text-white/80 mb-12 text-lg">
+            Something sweet and meaningful is about to unlock 💖
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-4 md:gap-8">
+            <div class="glass p-5 countdown-item">
+                <span id="days" class="text-4xl font-bold block">00</span>
+                <span class="text-xs uppercase tracking-widest">Days</span>
+            </div>
+            <div class="glass p-5 countdown-item">
+                <span id="hours" class="text-4xl font-bold block">00</span>
+                <span class="text-xs uppercase tracking-widest">Hours</span>
+            </div>
+            <div class="glass p-5 countdown-item">
+                <span id="minutes" class="text-4xl font-bold block">00</span>
+                <span class="text-xs uppercase tracking-widest">Minutes</span>
+            </div>
+            <div class="glass p-5 countdown-item">
+                <span id="seconds" class="text-4xl font-bold block">00</span>
+                <span class="text-xs uppercase tracking-widest">Seconds</span>
+            </div>
+        </div>
+
+        <div class="mt-12 italic text-white/90">
+            🎂 Unlocking on December 29🎂
+        </div>
+    </div>
+</div>
+
+<div id="birthday-screen" class="min-h-screen flex items-center justify-center text-center p-6">
+    <div>
+        <h1 class="text-6xl md:text-7xl font-black mb-6">
+            🎉 Happy Birthday! 🎉
+        </h1>
+        <p class="text-xl md:text-2xl text-white/90">
+            Wishing you a day full of smiles, warmth, and beautiful moments 💕
+        </p>
+    </div>
+</div>
+
+<script>
+/*
+  UPDATED: December 27, 2025 — 12:00 AM
+  Philippines Time (UTC +8)
+*/
+const targetDatePH = new Date(
+    // CHANGED DATE HERE TO 27
+    new Date("2025-12-29T00:00:00").toLocaleString("en-US", {
+        timeZone: "Asia/Manila"
+    })
+).getTime();
+
+let stageDone = false;
+
+function updateCountdown() {
+    const now = new Date(
+        new Date().toLocaleString("en-US", { timeZone: "Asia/Manila" })
+    ).getTime();
+
+    const distance = targetDatePH - now;
+
+    if (distance <= 0 && !stageDone) {
+        stageDone = true;
+        showBirthdayScreen();
+        return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((distance / (1000 * 60)) % 60);
+    const seconds = Math.floor((distance / 1000) % 60);
+
+    daysEl.textContent = String(days).padStart(2, "0");
+    hoursEl.textContent = String(hours).padStart(2, "0");
+    minutesEl.textContent = String(minutes).padStart(2, "0");
+    secondsEl.textContent = String(seconds).padStart(2, "0");
+}
+
+function showBirthdayScreen() {
+    const countdown = document.getElementById("countdown-screen");
+    countdown.classList.add("fade-out");
+
+    setTimeout(() => {
+        countdown.style.display = "none";
+        document.getElementById("birthday-screen").style.display = "flex";
+
+        // Redirect after 5 seconds
+        setTimeout(() => {
+            // CHANGED REDIRECT URL HERE
+            window.location.href = "birthday-main.html";
+        }, 5000);
+
+    }, 2000);
+}
+
+const daysEl = document.getElementById("days");
+const hoursEl = document.getElementById("hours");
+const minutesEl = document.getElementById("minutes");
+const secondsEl = document.getElementById("seconds");
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+</script>
+
+</body>
+</html>

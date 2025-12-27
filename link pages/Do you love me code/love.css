@@ -1,0 +1,168 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffe6e9;
+  font-family: "Quicksand", sans-serif;
+}
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.2s;
+}
+
+.question-container {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transition: 0.2s;
+}
+
+.local-gif {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto 3rem auto;
+  pointer-events: none;
+}
+
+.question {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.btn {
+  position: absolute;
+  border: none;
+  border-radius: 50px;
+  padding: 10px 20px;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #ff6b81;
+  color: white;
+  transform: scale(1.05);
+  box-shadow: 0px 4px 15px rgba(255, 107, 129, 0.5);
+}
+
+.btn:hover {
+  background-color: #ffa4b1;
+  transform: scale(1.1);
+  box-shadow: 0px 6px 20px rgba(255, 107, 129, 0.7);
+  text-shadow: 1px 1px 5px rgba(255, 182, 193, 0.8);
+}
+
+.yes-btn {
+  right: 54%;
+}
+
+.no-btn {
+  left: 54%;
+}
+
+/* RESULT SECTION */
+.result-container {
+  display: none;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.gif-result {
+  border-radius: 10px;
+  margin-bottom: 2rem;
+}
+.result-container h2 {
+  font-size: 3.2rem;
+  text-align: center;
+}
+
+/* HEART LOADER (unchanged) */
+.cssload-main {
+  display: none;
+  position: absolute;
+  top: 17%;
+  left: 50%;
+  margin: 200px auto 0 auto;
+  transform: translate(-100%, -50%);
+}
+
+.cssload-main * {
+  font-size: 62px;
+}
+
+.cssload-heart {
+  animation: cssload-heart 2.88s cubic-bezier(0.75, 0, 0.5, 1) infinite normal;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.cssload-heartL,
+.cssload-heartR {
+  width: 1em;
+  height: 1em;
+  border: 1px solid #ff0000;
+  background-color: #ff0000;
+  border-radius: 100%;
+  position: absolute;
+}
+
+.cssload-heartL {
+  transform: translate(-28px, -27px);
+  animation: cssload-heartL 2.88s infinite;
+}
+
+.cssload-heartR {
+  transform: translate(28px, -27px);
+  animation: cssload-heartR 2.88s infinite;
+}
+
+.cssload-square {
+  width: 1em;
+  height: 1em;
+  background-color: #ff0000;
+  position: relative;
+  transform: rotate(-45deg);
+  animation: cssload-square 2.88s infinite;
+}
+
+.cssload-shadow {
+  position: relative;
+  width: 1em;
+  height: 0.24em;
+  background-color: #d7d7d7;
+  border-radius: 50%;
+  animation: cssload-shadow 2.88s infinite;
+  top: 97px;
+  left: 50%;
+}
+
+/* animations */
+@keyframes cssload-heart {
+  50% { transform: rotate(360deg); }
+  100% { transform: rotate(720deg); }
+}
+
+@keyframes cssload-square {
+  50% { border-radius: 100%; transform: scale(0.5) rotate(-45deg); }
+}
+
+@keyframes cssload-shadow {
+  50% { transform: scale(0.5); }
+}
