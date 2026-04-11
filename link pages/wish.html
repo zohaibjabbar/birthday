@@ -3,63 +3,42 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Happy Birthday</title>
-
-    <!-- Tailwind -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
-
-    <!-- Custom CSS -->
+    <title>Happy Birthday Nessa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="wish.css" />
 </head>
-<body class="h-screen w-screen flex items-center justify-center relative">
+<body>
 
-    <!-- Canvas -->
     <canvas id="canvas-container"></canvas>
 
-    <!-- Card -->
-    <div class="glass-card floating 
-                w-[90%] md:w-[65%] 
-                p-10 rounded-3xl text-center relative z-10">
+    <div class="bd-root" id="root">
 
-        <h1 class="title-font gradient-text text-5xl md:text-7xl mb-8">
-            Happy Birthday!
-        </h1>
+        <div class="card">
+            <div class="top-ornament">✦ ✦ ✦</div>
+            <p class="label">wishing you</p>
+            <h1 class="title">Happy Birthday</h1>
+            <p class="subtitle">Nessa</p>
+            <div class="name-badge"><span>15 April</span></div>
+            <div class="divider">✦</div>
 
-        <p id="message-text"
-           class="text-gray-800 text-xl md:text-2xl leading-relaxed font-medium
-                  max-h-[55vh] overflow-y-auto px-3">
-            Today is your day a day that holds far more meaning than it might ever show on the surface.
-            I don’t want to offer you a routine birthday wish or words that feel expected.
-            I want this to come from the heart, because someone like you deserves more than formality;
-            you deserve sincerity, warmth, and honesty woven into every sentence.
+            <div class="message-box">
+                <p>Today is your day  a day that holds far more meaning than it might ever show on the surface. I don't want to offer you a routine birthday wish or words that feel expected. I want this to come from the heart, because someone like you deserves more than formality; you deserve sincerity, warmth, and honesty woven into every sentence.</p>
+                <p>Your presence carries a quiet strength and kindness that often goes unnoticed, yet it leaves a lasting impact on the people around you. On this day, I hope you pause for a moment and feel how valued you truly are not just today, but always.</p>
+                <p>When another year quietly joins your journey, I hope it brings you gentleness, comfort, and a calm kind of happiness the kind that doesn't fade when the candles are blown out.</p>
+                <p>As you step into this new year of your life, I hope it treats you with the same kindness you so effortlessly give to others. May it bring you moments of quiet joy, unexpected smiles, and the reassurance that you are never alone in the ways that truly matter.</p>
+                <p>Even on ordinary days, I hope you find small reasons to feel at peace in laughter shared, in simple conversations, and in the comfort of knowing you are appreciated more than you realize.</p>
+                <p>May this year help you grow in ways that feel right for you, not rushed or forced, but natural and steady. Whatever paths you choose, I hope they lead you toward confidence, calm, and fulfillment.</p>
+                <p>And through it all, remember that your presence makes a difference subtly, sincerely, and beautifully just by being you. 🌼</p>
+            </div>
 
-            <br><br>
-
-            Your presence carries a quiet strength and kindness that often goes unnoticed,
-            yet it leaves a lasting impact on the people around you.
-            On this day, I hope you pause for a moment and feel how valued you truly are,
-            not just today, but always.
-
-            <br><br>
-
-            When another year quietly joins your journey, I hope it brings you gentleness,
-            comfort, and a calm kind of happiness  the kind that doesn’t fade when the candles are blown out.
-
-
-            As you step into this new year of your life, I hope it treats you with the same kindness you so effortlessly give to others.<br><br>
-May it bring you moments of quiet joy, unexpected smiles, and the reassurance that you are never alone in the ways that truly matter.<br><br>
-Even on ordinary days, I hope you find small reasons to feel at peace  in laughter shared, in simple conversations, and in the comfort of knowing you are appreciated more than you realize.<br><br>
-May this year help you grow in ways that feel right for you, not rushed or forced, but natural and steady.<br><br>
-Whatever paths you choose, I hope they lead you toward confidence, calm, and fulfillment.<br><br>
-And through it all, remember that your presence makes a difference  subtly, sincerely, and beautifully just by being you. 🌼
-        </p>
+            <div class="footer-line">
+                <p>Cheers to you, always ✦</p>
+                <span class="date-tag">15 April · with love</span>
+            </div>
+        </div>
 
     </div>
 
-    <!-- JS -->
     <script src="wish.js"></script>
 </body>
 </html>

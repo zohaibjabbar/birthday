@@ -1,192 +1,321 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Birthday My Queen!</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday Nessa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
 
-  <style>
-    :root { 
-      --accent: #ff1493;
-      --gold: #ffd700;
-    }
+* { margin:0; padding:0; box-sizing:border-box; font-family:"General Sans",sans-serif; }
+html,body { width:100%; height:100%; overflow-x:hidden; }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #feada6 100%);
-      background-size: 400% 400%;
-      animation: bgFlow 10s ease infinite;
-      overflow-x: hidden;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    @keyframes bgFlow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    .container {
-      width: 90%;
-      max-width: 70%;
-      padding: 30px;
-      border-radius: 25px;
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      background: rgba(255, 255, 255, 0.4);
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-      z-index: 100; /* Keeps the card above decorations if you prefer, or set lower to let items float over */
-      position: relative;
-      max-height: 80vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    h1 {
-      color: var(--accent);
-      font-size: 2rem;
-      margin-bottom: 20px;
-      text-align: center;
-      text-shadow: 2px 2px 4px rgba(255,255,255,0.5);
-    }
-
-    #list-container {
-      overflow-y: auto;
-      padding-right: 10px;
-      
-    }
-
-    #list-container::-webkit-scrollbar {
-  display: none;
+/* ── Background ── */
+#birthday-bg {
+    position:fixed; top:0; left:0;
+    width:100%; height:100%; z-index:-1; overflow:hidden;
+}
+#birthday-bg::before {
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(120deg,#ff9a9e,#fad0c4,#a18cd1,#fbc2eb,#ff9a9e);
+    background-size:400% 400%;
+    animation:gradientBG 15s ease infinite; z-index:-2;
+}
+@keyframes gradientBG {
+    0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%}
 }
 
+/* Balloons */
+.balloon {
+    position:absolute; bottom:-130px; width:50px; height:65px;
+    border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation:floatUp linear infinite; opacity:0;
+    box-shadow:inset -6px -4px 12px rgba(0,0,0,.12),inset 6px 4px 12px rgba(255,255,255,.25);
+}
+.balloon::before {
+    content:''; position:absolute; bottom:-5px; left:50%;
+    transform:translateX(-50%); width:8px; height:6px;
+    background:inherit; clip-path:polygon(0 0,100% 0,50% 100%); filter:brightness(.8);
+}
+.balloon::after {
+    content:''; position:absolute; width:1px; height:55px;
+    background:linear-gradient(to bottom,rgba(180,180,180,.5),rgba(180,180,180,.05));
+    left:50%; transform:translateX(-50%); bottom:-60px;
+}
+.balloon:nth-child(1){background:linear-gradient(135deg,#ff6b6b,#ee5a24);left:6%;animation-duration:9s;animation-delay:0s;width:44px;height:58px}
+.balloon:nth-child(2){background:linear-gradient(135deg,#ffd700,#f39c12);left:22%;animation-duration:11s;animation-delay:2s;width:54px;height:70px}
+.balloon:nth-child(3){background:linear-gradient(135deg,#74b9ff,#0984e3);left:40%;animation-duration:10s;animation-delay:1s;width:40px;height:53px}
+.balloon:nth-child(4){background:linear-gradient(135deg,#fd79a8,#e84393);left:60%;animation-duration:12s;animation-delay:3.5s;width:52px;height:68px}
+.balloon:nth-child(5){background:linear-gradient(135deg,#55efc4,#00b894);left:78%;animation-duration:10s;animation-delay:.5s;width:46px;height:60px}
+.balloon:nth-child(6){background:linear-gradient(135deg,#a29bfe,#6c5ce7);left:90%;animation-duration:13s;animation-delay:4s;width:38px;height:50px}
+.balloon:nth-child(7){background:linear-gradient(135deg,#ffeaa7,#fdcb6e);left:15%;animation-duration:11s;animation-delay:5s;width:48px;height:63px}
+@keyframes floatUp {
+    0%{transform:translateY(0) translateX(0) rotate(0deg);opacity:0}
+    8%{opacity:.8} 50%{transform:translateY(-55vh) translateX(18px) rotate(5deg)}
+    100%{transform:translateY(-120vh) translateX(-12px) rotate(-5deg);opacity:0}
+}
 
-    .list-item {
-      background: rgba(255, 255, 255, 0.7);
-      margin: 10px 0;
-      padding: 15px;
-      border-radius: 15px;
-      border-left: 5px solid var(--accent);
-      animation: popIn .6s ease forwards;
-      opacity: 0;
-    }
+/* Confetti */
+.confetti { position:absolute; top:-15px; animation:fall linear infinite; opacity:0; }
+.confetti:nth-child(8) {left:4%;animation-duration:6s;animation-delay:0s;background:#ff4d4d;width:8px;height:13px;border-radius:2px}
+.confetti:nth-child(9) {left:14%;animation-duration:8s;animation-delay:1.2s;background:#ffd700;width:6px;height:6px;border-radius:50%}
+.confetti:nth-child(10){left:26%;animation-duration:7s;animation-delay:.8s;background:#1e90ff;width:10px;height:7px;border-radius:1px}
+.confetti:nth-child(11){left:38%;animation-duration:9s;animation-delay:2.5s;background:#ff69b4;width:7px;height:14px;border-radius:2px}
+.confetti:nth-child(12){left:52%;animation-duration:6.5s;animation-delay:.3s;background:#32cd32;width:9px;height:9px;border-radius:50%}
+.confetti:nth-child(13){left:65%;animation-duration:7.5s;animation-delay:1.8s;background:#a18cd1;width:11px;height:8px;border-radius:2px}
+.confetti:nth-child(14){left:76%;animation-duration:8.5s;animation-delay:3s;background:#fd79a8;width:5px;height:5px;border-radius:50%}
+.confetti:nth-child(15){left:85%;animation-duration:5.5s;animation-delay:.6s;background:#ffd700;width:8px;height:12px;border-radius:2px}
+.confetti:nth-child(16){left:93%;animation-duration:10s;animation-delay:2s;background:#74b9ff;width:6px;height:6px;border-radius:50%}
+.confetti:nth-child(17){left:48%;animation-duration:7s;animation-delay:4s;background:#55efc4;width:9px;height:13px;border-radius:2px}
+@keyframes fall {
+    0%{transform:translateY(0) rotate(0deg);opacity:0}
+    8%{opacity:.75} 100%{transform:translateY(110vh) rotate(720deg);opacity:0}
+}
 
-    @keyframes popIn {
-      to { opacity: 1; transform: scale(1); }
-    }
+/* ── Layout ── */
+#main { width:100%; color:#fff; }
 
-    /* DECORATION STYLE - FIXED TO VIEWPORT */
-    .decoration {
-      position: fixed;
-      pointer-events: none; /* Allows clicking through them */
-      z-index: 9999; /* Forces them to the very front */
-      user-select: none;
-    }
+/* NAV */
+#nav {
+    width:100%; padding:20px 40px; color:#fff;
+    display:flex; align-items:center; justify-content:space-between;
+}
+#nav a { color:#fff; text-decoration:none; font-size:18px; }
+#nav h4 { text-transform:uppercase; font-size:13px; opacity:.7; letter-spacing:2px; }
 
-    @keyframes floatUp {
-      0% { transform: translateY(110vh) translateX(0); opacity: 1; }
-      50% { transform: translateY(50vh) translateX(20px); }
-      100% { transform: translateY(-20vh) translateX(-20px); opacity: 0; }
-    }
+/* HERO */
+#wish-hero { padding:80px 40px 60px; overflow:hidden; }
 
-    .balloon {
-      width: 40px;
-      height: 50px;
-      border-radius: 50%;
-      animation: floatUp 8s linear forwards;
-    }
+.bounding { overflow:hidden; width:100%; }
+.boundingelem {
+    display:block;
+    transform:translateY(110%);
+    animation:slideUp .9s cubic-bezier(.16,1,.3,1) forwards;
+}
+@keyframes slideUp { to{transform:translateY(0)} }
 
-    .balloon::before {
-      content: "▲";
-      position: absolute;
-      bottom: -8px;
-      left: 13px;
-      font-size: 10px;
-      color: inherit;
-    }
+.wish-title {
+    font-size:8vw; font-weight:900; text-transform:uppercase;
+    opacity:.6; line-height:1; animation-delay:.1s;
+}
+.wish-subtitle {
+    font-family:'Dancing Script',cursive; font-size:9vw;
+    font-weight:700; line-height:1; animation-delay:.3s;
+}
+#wish-date { margin-top:30px; }
+#wish-date h5 {
+    font-size:1vw; text-transform:uppercase;
+    opacity:.7; letter-spacing:3px; animation-delay:.5s;
+}
 
-    .emoji-float {
-      font-size: 30px;
-      animation: floatUp 7s linear forwards;
-    }
-  </style>
+/* PARAGRAPHS */
+#wish-body { width:100%; padding-top:60px; padding-right:10vw; }
+
+.wish-para {
+    width:100%;
+    border-top:1px solid rgba(255,255,255,.35);
+    padding:3vw 3vw;
+    display:flex; align-items:flex-start; gap:3vw;
+    position:relative;
+    opacity:0; transform:translateY(40px);
+    transition:opacity .7s ease var(--delay), transform .7s ease var(--delay),
+                padding-left .6s cubic-bezier(.075,.82,.165,1), background-color .4s ease;
+}
+.wish-para.visible { opacity:1; transform:translateY(0); }
+.wish-para:last-child { border-bottom:1px solid rgba(255,255,255,.35); }
+.wish-para:hover { padding-left:6vw; background-color:rgba(255,255,255,.05); }
+
+.para-num {
+    font-size:.75rem; opacity:.4; letter-spacing:2px;
+    text-transform:uppercase; min-width:30px; padding-top:4px; flex-shrink:0;
+}
+.para-content { flex:1; }
+.para-title {
+    font-size:1.6vw; text-transform:uppercase; font-weight:900;
+    opacity:.7; margin-bottom:1rem; letter-spacing:1px; transition:opacity .4s ease;
+}
+.wish-para:hover .para-title { opacity:1; }
+.para-content p { font-size:.95rem; line-height:1.8; opacity:.75; max-width:70ch; }
+
+/* FOOTER */
+#footer {
+    display:flex; align-items:center; justify-content:space-between;
+    padding:30px; color:#fff; margin-top:40px;
+}
+#footerleft { display:flex; gap:30px; }
+#footerleft h5 { text-transform:uppercase; font-size:13px; opacity:.7; }
+#borderline {
+    width:1px; height:40px;
+    background:linear-gradient(to bottom,transparent,rgba(255,255,255,.35),transparent);
+}
+#footerright { display:flex; gap:20px; }
+#footer a {
+    color:#fff; text-decoration:none; text-transform:uppercase;
+    font-size:17px; font-weight:500; transition:opacity .3s ease;
+}
+#footer a:hover { opacity:.6; }
+
+/* ── Responsive ── */
+@media(max-width:768px){
+    #wish-hero{padding:60px 25px 40px}
+    .wish-title{font-size:13vw}
+    .wish-subtitle{font-size:14vw}
+    #wish-date h5{font-size:11px}
+    #wish-body{padding-right:0}
+    .para-title{font-size:14px}
+    .wish-para{padding:5vw;flex-direction:column;gap:8px}
+    .wish-para:hover{padding-left:5vw}
+    #footer{flex-direction:column-reverse;gap:15px}
+    #borderline{width:80%;height:1px;background:linear-gradient(to right,transparent,rgba(255,255,255,.3),transparent)}
+    #nav{padding:20px 25px}
+}
+@media(max-width:480px){
+    .wish-title{font-size:15vw}
+    .wish-subtitle{font-size:16vw}
+    .para-content p{font-size:14px}
+}
+</style>
 </head>
 <body>
 
-  <div class="container">
-    <h1>'Til when?</h1>
-    <div id="list-container"></div>
-  </div>
+<div id="birthday-bg">
+    <div class="balloon"></div><div class="balloon"></div><div class="balloon"></div>
+    <div class="balloon"></div><div class="balloon"></div><div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="confetti"></div><div class="confetti"></div><div class="confetti"></div>
+    <div class="confetti"></div><div class="confetti"></div><div class="confetti"></div>
+    <div class="confetti"></div><div class="confetti"></div><div class="confetti"></div>
+    <div class="confetti"></div>
+</div>
 
-  <script>
-    const container = document.getElementById("list-container");
-    const wishes = [
-      "Well, I said that I would keep proving myself, and when you asked '’til when,' I didn’t answer that question that time. The answer is",
-      "I don’t know what the future will bring, and I don’t know what will occur tomorrow, next week, or in the years to come. This I do know: I want to be present, authentic, and steady in every opportunity I get. I want to be someone who cares, not only when everything is going well and it doesn’t cost me much, but when everything isn’t going well, when the world feels heavy, and when someone feels like they’re all alone.",
-      "Trust is not easy to offer, and in many ways, it is even more difficult to earn. I realize that. However, I do believe in proving myself not by words, but by actions actions that express care, respect, and integrity. I may not be flawless, and I might make some mistakes along the way, but I would like to be genuine, authentic, and down-to-earth in my dealings with people. I would like to be the one who will listen, support, and stand by people in both their triumphant and tough experiences in life.",
-      "Distance, situations, and miscommunications can surely come between us, but I believe in being there in presence as well as in effort. I try to demonstrate that although life may be complicated and the world may make trusting a challenge, it is still possible to be authentic, to display concern, and to establish a connection. I try to be a reminder that a person can be there in the good times as well as in the tough times. No person has to go through all of it alone.",
-      "I know that I am not flawless. I know that I have limitations and that I fail, but I always set out to be genuine, down-to-earth, and here. For me, life is not about huge promises or lots of words. It is about actions that show respect, care, and thinking. I would like to continue to prove myself not to please others but to be someone dependable, someone to listen to, someone to appreciate moments with, someone to count in.",
-     
-    ];
+<div id="main">
 
-    wishes.forEach((text, i) => {
-      let item = document.createElement("div");
-      item.className = "list-item";
-      item.innerHTML = `<strong>${i+1}.</strong> ${text}`;
-      item.style.animationDelay = (i * 0.2) + "s";
-      container.appendChild(item);
-    });
+    <div id="nav">
+        <a href="#">Nessa</a>
+        <h4>15 April</h4>
+    </div>
 
-    function spawnDecoration() {
-      const elements = ["🎈", "🎂", "🎉", "💖", "✨"];
-      const type = elements[Math.floor(Math.random() * elements.length)];
-      
-      const el = document.createElement("div");
-      el.className = "decoration emoji-float";
-      el.innerText = type;
-      
-      // Random horizontal position across the full width
-      el.style.left = Math.random() * 95 + "vw"; 
-      el.style.bottom = "-10vh";
-      
-      // Random speed and size
-      const duration = 5 + Math.random() * 5;
-      el.style.animationDuration = duration + "s";
-      el.style.fontSize = (20 + Math.random() * 30) + "px";
-      
-      document.body.appendChild(el);
-      setTimeout(() => el.remove(), duration * 1000);
-    }
+    <div id="wish-hero">
+        <div class="bounding"><h1 class="boundingelem wish-title">For You,</h1></div>
+        <div class="bounding"><h1 class="boundingelem wish-subtitle">Nessa</h1></div>
+        <div id="wish-date">
+            <div class="bounding"><h5 class="boundingelem">Happy Birthday — 15 April</h5></div>
+        </div>
+    </div>
 
-    function spawnBalloon() {
-      const b = document.createElement("div");
-      const colors = ['#ff6347', '#ffd700', '#ff1493', '#00ced1', '#9370db'];
-      b.className = "decoration balloon";
-      b.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-      b.style.color = b.style.backgroundColor;
-      b.style.left = Math.random() * 95 + "vw";
-      b.style.bottom = "-10vh";
-      
-      const duration = 7 + Math.random() * 5;
-      b.style.animationDuration = duration + "s";
-      
-      document.body.appendChild(b);
-      setTimeout(() => b.remove(), duration * 1000);
-    }
+    <div id="wish-body">
 
-    // High frequency spawning for a "Full Screen" party effect
-    setInterval(spawnDecoration, 400); 
-    setInterval(spawnBalloon, 700);
-  </script>
+        <div class="wish-para" style="--delay:0.1s">
+            <span class="para-num">01</span>
+            <div class="para-content">
+                <h2 class="para-title">The Distance Means Nothing Today</h2>
+                <p>Today, on the 15th of April, the world becomes a little more beautiful simply because you exist in it. I know we are miles apart, separated by roads, cities,countries, and skies that stretch endlessly between us, but I want you to know that distance has never once made my heart feel any less full when I think of you. Today is your birthday, Nessa, and even though I cannot be standing right beside you with a cake in my hands and a smile on my face, I am celebrating you from every corner of my soul. I woke up this morning with your name on my mind and a warmth in my chest that no amount of miles could ever cool. You deserve every single song that plays today, every flower that blooms, every candle that flickers because all of it, in my heart, is for you. The universe chose April 15th to bring you into this world, and I genuinely believe that was one of the most wonderful decisions the universe ever made.</p>
+            </div>
+        </div>
+
+        <div class="wish-para" style="--delay:0.15s">
+            <span class="para-num">02</span>
+            <div class="para-content">
+                <h2 class="para-title">What You Mean to Me</h2>
+                <p>There are people in this world who walk into your life and rearrange everything — the way you think, the way you feel, the way you see ordinary things like sunsets and rainy evenings and late-night skies. Nessa, you are that person for me. Since the day you came into my life, everything has carried a different kind of meaning. A song on the radio reminds me of you. A quiet evening makes me wish I could share it with you. Even something as simple as a good meal makes me want to tell you about it, because somehow, things only feel complete when you're part of them. On this birthday of yours, I want you to understand just how deeply you have shaped me into a better, softer, more hopeful version of myself. You didn't just walk into my life — you lit it up. And from this distance, I want to send you every ounce of love I have stored in me, all wrapped up in words because my arms can't reach you just yet.</p>
+            </div>
+        </div>
+
+        <div class="wish-para" style="--delay:0.2s">
+            <span class="para-num">03</span>
+            <div class="para-content">
+                <h2 class="para-title">A Love That Travels Across Miles</h2>
+                <p>Long-distance love is not easy — anyone who says otherwise has never truly lived it. It's the ache of wanting to hold someone and having nothing but a screen to look at. It's falling asleep wishing they were beside you, and waking up to a good morning text instead of their voice. But Nessa, I want you to know that every single day of this distance has only made me more certain about you, more sure of what we have, and more grateful for every moment we do get to share, even through a phone screen. Today, on your birthday, I wish I could teleport across every mile between us and surprise you with open arms. I wish I could see your face light up, hear your laugh, and sit beside you as you blow out your candles. But since I can't, please know that my heart is making that journey anyway. Love doesn't need a flight ticket — mine has already arrived at your doorstep.</p>
+            </div>
+        </div>
+
+        <div class="wish-para" style="--delay:0.25s">
+            <span class="para-num">04</span>
+            <div class="para-content">
+                <h2 class="para-title">The Girl Who Deserves the World</h2>
+                <p>If I could describe you in one line, Nessa, I would simply say: she deserves the whole world and then some. You are someone who carries so much warmth inside you, who gives so freely, who loves so genuinely, and who makes the people around you feel seen and valued in a way that is truly rare. On your birthday, I want you to stop for a moment and turn all that beautiful love you give others back onto yourself. Today is YOUR day. You deserve to be celebrated loudly, tenderly, and completely. You deserve the best food, the longest hugs, the most heartfelt wishes, and a day so good it makes you smile when you think about it years from now. I wish I was there to make that happen in person, but please know that from wherever I am, I am sending you all my best energy, all my love, and every single birthday wish a heart can hold all dedicated to you.</p>
+            </div>
+        </div>
+
+        <div class="wish-para" style="--delay:0.3s">
+            <span class="para-num">05</span>
+            <div class="para-content">
+                <h2 class="para-title">Every April 15th Is Sacred to Me</h2>
+                <p>Before I knew you, April 15th was just another date on the calendar nothing extraordinary, nothing to look forward to. But now? Now it is one of the most important days of the year to me. It is the day the world was gifted with you, Nessa, and I could not be more thankful for that gift. Every year when this date rolls around, I feel something shift inside me — a kind of quiet joy mixed with deep gratitude that you are alive, that you are you, and that somehow, out of all the people in the world, I got to be close to you. Distance makes me unable to celebrate this day the way I truly want to, but it does not stop me from feeling everything. Today I am raising an invisible toast to you, sending wishes through the wind, and hoping that somehow the universe carries every bit of my love straight to your heart.</p>
+            </div>
+        </div>
+
+        <div class="wish-para" style="--delay:0.35s">
+            <span class="para-num">06</span>
+            <div class="para-content">
+                <h2 class="para-title">The Things I'd Do If I Were There</h2>
+                <p> I'd wake up early earlier than you and make sure everything was perfectly ready before you even opened your eyes. There would be flowers, the kind you love most, placed somewhere you'd see them first thing in the morning. I'd make you your favorite breakfast and bring it to you before you even had to ask. I'd sing you happy birthday terribly and off-key just to make you laugh, because your laugh is honestly one of the most beautiful sounds I've ever heard. I'd take you somewhere that makes you happy, somewhere that makes your eyes light up, and I'd spend the whole day just watching you be joyful. And at the end of the night, I'd hold you close and whisper all the things I love about you until you fell asleep smiling. I can't do all of that today, Nessa — but I promise you, one day I will. And it'll be worth the wait.</p>
+            </div>
+        </div>
+
+        <div class="wish-para" style="--delay:0.4s">
+            <span class="para-num">07</span>
+            <div class="para-content">
+                <h2 class="para-title">A Paragraph Full of Gratitude</h2>
+                <p>On your birthday, I want to take a moment to thank you — genuinely, deeply thank you. Thank you for choosing to stay even when the distance gets heavy and the silence gets too loud. Thank you for every late-night conversation, every voice note, every message you sent just to let me know you were thinking of me. Thank you for being patient with me, for understanding me in ways that sometimes even surprise me, and for making this long-distance thing feel less like a burden and more like proof that something real and strong exists between us. You are not just my person, Nessa — you are my anchor. You are the reason I look forward to the future, the reason I believe that good things are worth working for, and the reason I know that love, real love, is absolutely worth every mile. So today, on your birthday, I want to thank the universe for you and thank you for being you.</p>
+            </div>
+        </div>
+
+        <div class="wish-para" style="--delay:0.45s">
+            <span class="para-num">08</span>
+            <div class="para-content">
+                <h2 class="para-title">My Favorite Human Being</h2>
+                <p>Out of everyone I have ever known, out of every face I have ever seen and every voice I have ever heard, you remain my absolute favorite, Nessa. There is something about you that just feels like home  a warmth, a familiarity, a comfort that I have never found anywhere else. You make the ordinary feel extraordinary. You make hard days feel manageable. You make good days feel golden. And on your birthday, I want the world to reflect back to you even a fraction of what you give to others every single day. I hope your phone overflows with birthday messages. I hope your heart overflows with happiness. I hope you eat your favorite food, wear your favorite outfit, and feel like the absolute star that you are. You are my favorite human being on this planet, and I mean that with every single piece of me. Happy birthday, Nessa — today belongs to you.</p>
+            </div>
+        </div>
+
+        <div class="wish-para" style="--delay:0.5s">
+            <span class="para-num">09</span>
+            <div class="para-content">
+                <h2 class="para-title">The Future I Dream About</h2>
+                <p>One of the things that keeps me going through this distance is the future I dream about  a future where the miles between us are finally gone, where we are no longer just voices in each other's phones but actual presences in each other's daily lives. I dream about waking up and not having to calculate time zones. I dream about being able to say "come over" and actually having you show up at the door. I dream about the birthday where I am not writing you a paragraph from far away but instead whispering happy birthday in your ear as the clock strikes midnight. That future feels so real to me, Nessa, so vivid and so close. And on your birthday today, that dream burns a little brighter in my chest. Every year that passes is a year closer to that future. Every birthday is one more reminder that what we have is worth every sacrifice, every wait, every hard night. Here's to you, and here's to us, and here's to everything that's still ahead.</p>
+            </div>
+        </div>
+
+        <div class="wish-para" style="--delay:0.55s">
+            <span class="para-num">10</span>
+            <div class="para-content">
+                <h2 class="para-title">Simply: I Love You, Nessa</h2>
+                <p>At the end of every beautiful word, every long paragraph, every wish and prayer and hope I have sent your way today, it all comes down to something very simple  I love you. I love you in the ordinary moments and the extraordinary ones. I love you in the silence and in the conversations that stretch past midnight. I love you across every mile that sits between us, through every time zone and every restless night. I love you on regular Tuesdays and I love you especially today, on April 15th, the day this world became better because you were born into it. Happy birthday, my Nessa. You are so deeply loved, so sincerely treasured, and so endlessly cherished  not just today, not just in this season, but always. May this birthday bring you so much joy it spills over into every day that follows. May every wish you make today come true. And may you always, always know that somewhere out there, someone loves you more than words can ever fully say. 🎂</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="footer">
+        <div id="footerleft">
+            <h5>Cheers to You!</h5>
+            <h5>15 April</h5>
+        </div>
+        <div id="borderline"></div>
+        <div id="footerright">
+            <a href="#">Your Special Day</a>
+            <a href="#">With Love</a>
+        </div>
+    </div>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var paras = document.querySelectorAll('.wish-para');
+    var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12 });
+    paras.forEach(function (para) { observer.observe(para); });
+});
+</script>
+
 </body>
 </html>
